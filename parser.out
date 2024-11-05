@@ -1,0 +1,1306 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    AND
+    OR
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> INICIO statements FIM
+Rule 2     statements -> statement
+Rule 3     statements -> statements statement
+Rule 4     statement -> var_declaration
+Rule 5     statement -> assignment
+Rule 6     statement -> if_statement
+Rule 7     statement -> while_loop
+Rule 8     statement -> for_loop
+Rule 9     statement -> print_statement
+Rule 10    var_declaration -> VARIAVEL ID SEMICOLON
+Rule 11    assignment -> ID ASSIGN expression SEMICOLON
+Rule 12    expression -> expression PLUS term
+Rule 13    expression -> expression MINUS term
+Rule 14    expression -> term
+Rule 15    term -> term TIMES factor
+Rule 16    term -> term DIVIDE factor
+Rule 17    term -> factor
+Rule 18    factor -> NUMBER
+Rule 19    factor -> STRING
+Rule 20    factor -> VERDADEIRO
+Rule 21    factor -> FALSO
+Rule 22    factor -> ID
+Rule 23    condition -> expression comparison_operator expression
+Rule 24    condition -> NOT condition
+Rule 25    condition -> LPAREN condition RPAREN
+Rule 26    comparison_operator -> EQUALS
+Rule 27    comparison_operator -> NEQUALS
+Rule 28    comparison_operator -> LT
+Rule 29    comparison_operator -> GT
+Rule 30    comparison_operator -> LE
+Rule 31    comparison_operator -> GE
+Rule 32    if_statement -> SE condition bloco optional_else
+Rule 33    optional_else -> SENAO bloco
+Rule 34    optional_else -> empty
+Rule 35    while_loop -> ENQUANTO condition bloco
+Rule 36    for_loop -> PARA ID ASSIGN expression ATE expression bloco
+Rule 37    bloco -> LBRACE statements RBRACE
+Rule 38    print_statement -> IMPRIME expression SEMICOLON
+Rule 39    empty -> <empty>
+
+Terminals, with rules where they appear
+
+AND                  : 
+ASSIGN               : 11 36
+ATE                  : 36
+DIVIDE               : 16
+ENQUANTO             : 35
+EQUALS               : 26
+FALSO                : 21
+FIM                  : 1
+GE                   : 31
+GT                   : 29
+ID                   : 10 11 22 36
+IMPRIME              : 38
+INICIO               : 1
+LBRACE               : 37
+LE                   : 30
+LPAREN               : 25
+LT                   : 28
+MINUS                : 13
+NEQUALS              : 27
+NOT                  : 24
+NUMBER               : 18
+OR                   : 
+PARA                 : 36
+PLUS                 : 12
+RBRACE               : 37
+RPAREN               : 25
+SE                   : 32
+SEMICOLON            : 10 11 38
+SENAO                : 33
+STRING               : 19
+TIMES                : 15
+VARIAVEL             : 10
+VERDADEIRO           : 20
+error                : 
+
+Nonterminals, with rules where they appear
+
+assignment           : 5
+bloco                : 32 33 35 36
+comparison_operator  : 23
+condition            : 24 25 32 35
+empty                : 34
+expression           : 11 12 13 23 23 36 36 38
+factor               : 15 16 17
+for_loop             : 8
+if_statement         : 6
+optional_else        : 32
+print_statement      : 9
+program              : 0
+statement            : 2 3
+statements           : 1 3 37
+term                 : 12 13 14 15 16
+var_declaration      : 4
+while_loop           : 7
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . INICIO statements FIM
+
+    INICIO          shift and go to state 2
+
+    program                        shift and go to state 1
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> INICIO . statements FIM
+    (2) statements -> . statement
+    (3) statements -> . statements statement
+    (4) statement -> . var_declaration
+    (5) statement -> . assignment
+    (6) statement -> . if_statement
+    (7) statement -> . while_loop
+    (8) statement -> . for_loop
+    (9) statement -> . print_statement
+    (10) var_declaration -> . VARIAVEL ID SEMICOLON
+    (11) assignment -> . ID ASSIGN expression SEMICOLON
+    (32) if_statement -> . SE condition bloco optional_else
+    (35) while_loop -> . ENQUANTO condition bloco
+    (36) for_loop -> . PARA ID ASSIGN expression ATE expression bloco
+    (38) print_statement -> . IMPRIME expression SEMICOLON
+
+    VARIAVEL        shift and go to state 11
+    ID              shift and go to state 12
+    SE              shift and go to state 13
+    ENQUANTO        shift and go to state 14
+    PARA            shift and go to state 15
+    IMPRIME         shift and go to state 16
+
+    statements                     shift and go to state 3
+    statement                      shift and go to state 4
+    var_declaration                shift and go to state 5
+    assignment                     shift and go to state 6
+    if_statement                   shift and go to state 7
+    while_loop                     shift and go to state 8
+    for_loop                       shift and go to state 9
+    print_statement                shift and go to state 10
+
+state 3
+
+    (1) program -> INICIO statements . FIM
+    (3) statements -> statements . statement
+    (4) statement -> . var_declaration
+    (5) statement -> . assignment
+    (6) statement -> . if_statement
+    (7) statement -> . while_loop
+    (8) statement -> . for_loop
+    (9) statement -> . print_statement
+    (10) var_declaration -> . VARIAVEL ID SEMICOLON
+    (11) assignment -> . ID ASSIGN expression SEMICOLON
+    (32) if_statement -> . SE condition bloco optional_else
+    (35) while_loop -> . ENQUANTO condition bloco
+    (36) for_loop -> . PARA ID ASSIGN expression ATE expression bloco
+    (38) print_statement -> . IMPRIME expression SEMICOLON
+
+    FIM             shift and go to state 17
+    VARIAVEL        shift and go to state 11
+    ID              shift and go to state 12
+    SE              shift and go to state 13
+    ENQUANTO        shift and go to state 14
+    PARA            shift and go to state 15
+    IMPRIME         shift and go to state 16
+
+    statement                      shift and go to state 18
+    var_declaration                shift and go to state 5
+    assignment                     shift and go to state 6
+    if_statement                   shift and go to state 7
+    while_loop                     shift and go to state 8
+    for_loop                       shift and go to state 9
+    print_statement                shift and go to state 10
+
+state 4
+
+    (2) statements -> statement .
+
+    FIM             reduce using rule 2 (statements -> statement .)
+    VARIAVEL        reduce using rule 2 (statements -> statement .)
+    ID              reduce using rule 2 (statements -> statement .)
+    SE              reduce using rule 2 (statements -> statement .)
+    ENQUANTO        reduce using rule 2 (statements -> statement .)
+    PARA            reduce using rule 2 (statements -> statement .)
+    IMPRIME         reduce using rule 2 (statements -> statement .)
+    RBRACE          reduce using rule 2 (statements -> statement .)
+
+
+state 5
+
+    (4) statement -> var_declaration .
+
+    FIM             reduce using rule 4 (statement -> var_declaration .)
+    VARIAVEL        reduce using rule 4 (statement -> var_declaration .)
+    ID              reduce using rule 4 (statement -> var_declaration .)
+    SE              reduce using rule 4 (statement -> var_declaration .)
+    ENQUANTO        reduce using rule 4 (statement -> var_declaration .)
+    PARA            reduce using rule 4 (statement -> var_declaration .)
+    IMPRIME         reduce using rule 4 (statement -> var_declaration .)
+    RBRACE          reduce using rule 4 (statement -> var_declaration .)
+
+
+state 6
+
+    (5) statement -> assignment .
+
+    FIM             reduce using rule 5 (statement -> assignment .)
+    VARIAVEL        reduce using rule 5 (statement -> assignment .)
+    ID              reduce using rule 5 (statement -> assignment .)
+    SE              reduce using rule 5 (statement -> assignment .)
+    ENQUANTO        reduce using rule 5 (statement -> assignment .)
+    PARA            reduce using rule 5 (statement -> assignment .)
+    IMPRIME         reduce using rule 5 (statement -> assignment .)
+    RBRACE          reduce using rule 5 (statement -> assignment .)
+
+
+state 7
+
+    (6) statement -> if_statement .
+
+    FIM             reduce using rule 6 (statement -> if_statement .)
+    VARIAVEL        reduce using rule 6 (statement -> if_statement .)
+    ID              reduce using rule 6 (statement -> if_statement .)
+    SE              reduce using rule 6 (statement -> if_statement .)
+    ENQUANTO        reduce using rule 6 (statement -> if_statement .)
+    PARA            reduce using rule 6 (statement -> if_statement .)
+    IMPRIME         reduce using rule 6 (statement -> if_statement .)
+    RBRACE          reduce using rule 6 (statement -> if_statement .)
+
+
+state 8
+
+    (7) statement -> while_loop .
+
+    FIM             reduce using rule 7 (statement -> while_loop .)
+    VARIAVEL        reduce using rule 7 (statement -> while_loop .)
+    ID              reduce using rule 7 (statement -> while_loop .)
+    SE              reduce using rule 7 (statement -> while_loop .)
+    ENQUANTO        reduce using rule 7 (statement -> while_loop .)
+    PARA            reduce using rule 7 (statement -> while_loop .)
+    IMPRIME         reduce using rule 7 (statement -> while_loop .)
+    RBRACE          reduce using rule 7 (statement -> while_loop .)
+
+
+state 9
+
+    (8) statement -> for_loop .
+
+    FIM             reduce using rule 8 (statement -> for_loop .)
+    VARIAVEL        reduce using rule 8 (statement -> for_loop .)
+    ID              reduce using rule 8 (statement -> for_loop .)
+    SE              reduce using rule 8 (statement -> for_loop .)
+    ENQUANTO        reduce using rule 8 (statement -> for_loop .)
+    PARA            reduce using rule 8 (statement -> for_loop .)
+    IMPRIME         reduce using rule 8 (statement -> for_loop .)
+    RBRACE          reduce using rule 8 (statement -> for_loop .)
+
+
+state 10
+
+    (9) statement -> print_statement .
+
+    FIM             reduce using rule 9 (statement -> print_statement .)
+    VARIAVEL        reduce using rule 9 (statement -> print_statement .)
+    ID              reduce using rule 9 (statement -> print_statement .)
+    SE              reduce using rule 9 (statement -> print_statement .)
+    ENQUANTO        reduce using rule 9 (statement -> print_statement .)
+    PARA            reduce using rule 9 (statement -> print_statement .)
+    IMPRIME         reduce using rule 9 (statement -> print_statement .)
+    RBRACE          reduce using rule 9 (statement -> print_statement .)
+
+
+state 11
+
+    (10) var_declaration -> VARIAVEL . ID SEMICOLON
+
+    ID              shift and go to state 19
+
+
+state 12
+
+    (11) assignment -> ID . ASSIGN expression SEMICOLON
+
+    ASSIGN          shift and go to state 20
+
+
+state 13
+
+    (32) if_statement -> SE . condition bloco optional_else
+    (23) condition -> . expression comparison_operator expression
+    (24) condition -> . NOT condition
+    (25) condition -> . LPAREN condition RPAREN
+    (12) expression -> . expression PLUS term
+    (13) expression -> . expression MINUS term
+    (14) expression -> . term
+    (15) term -> . term TIMES factor
+    (16) term -> . term DIVIDE factor
+    (17) term -> . factor
+    (18) factor -> . NUMBER
+    (19) factor -> . STRING
+    (20) factor -> . VERDADEIRO
+    (21) factor -> . FALSO
+    (22) factor -> . ID
+
+    NOT             shift and go to state 23
+    LPAREN          shift and go to state 24
+    NUMBER          shift and go to state 27
+    STRING          shift and go to state 28
+    VERDADEIRO      shift and go to state 29
+    FALSO           shift and go to state 30
+    ID              shift and go to state 31
+
+    condition                      shift and go to state 21
+    expression                     shift and go to state 22
+    term                           shift and go to state 25
+    factor                         shift and go to state 26
+
+state 14
+
+    (35) while_loop -> ENQUANTO . condition bloco
+    (23) condition -> . expression comparison_operator expression
+    (24) condition -> . NOT condition
+    (25) condition -> . LPAREN condition RPAREN
+    (12) expression -> . expression PLUS term
+    (13) expression -> . expression MINUS term
+    (14) expression -> . term
+    (15) term -> . term TIMES factor
+    (16) term -> . term DIVIDE factor
+    (17) term -> . factor
+    (18) factor -> . NUMBER
+    (19) factor -> . STRING
+    (20) factor -> . VERDADEIRO
+    (21) factor -> . FALSO
+    (22) factor -> . ID
+
+    NOT             shift and go to state 23
+    LPAREN          shift and go to state 24
+    NUMBER          shift and go to state 27
+    STRING          shift and go to state 28
+    VERDADEIRO      shift and go to state 29
+    FALSO           shift and go to state 30
+    ID              shift and go to state 31
+
+    condition                      shift and go to state 32
+    expression                     shift and go to state 22
+    term                           shift and go to state 25
+    factor                         shift and go to state 26
+
+state 15
+
+    (36) for_loop -> PARA . ID ASSIGN expression ATE expression bloco
+
+    ID              shift and go to state 33
+
+
+state 16
+
+    (38) print_statement -> IMPRIME . expression SEMICOLON
+    (12) expression -> . expression PLUS term
+    (13) expression -> . expression MINUS term
+    (14) expression -> . term
+    (15) term -> . term TIMES factor
+    (16) term -> . term DIVIDE factor
+    (17) term -> . factor
+    (18) factor -> . NUMBER
+    (19) factor -> . STRING
+    (20) factor -> . VERDADEIRO
+    (21) factor -> . FALSO
+    (22) factor -> . ID
+
+    NUMBER          shift and go to state 27
+    STRING          shift and go to state 28
+    VERDADEIRO      shift and go to state 29
+    FALSO           shift and go to state 30
+    ID              shift and go to state 31
+
+    expression                     shift and go to state 34
+    term                           shift and go to state 25
+    factor                         shift and go to state 26
+
+state 17
+
+    (1) program -> INICIO statements FIM .
+
+    $end            reduce using rule 1 (program -> INICIO statements FIM .)
+
+
+state 18
+
+    (3) statements -> statements statement .
+
+    FIM             reduce using rule 3 (statements -> statements statement .)
+    VARIAVEL        reduce using rule 3 (statements -> statements statement .)
+    ID              reduce using rule 3 (statements -> statements statement .)
+    SE              reduce using rule 3 (statements -> statements statement .)
+    ENQUANTO        reduce using rule 3 (statements -> statements statement .)
+    PARA            reduce using rule 3 (statements -> statements statement .)
+    IMPRIME         reduce using rule 3 (statements -> statements statement .)
+    RBRACE          reduce using rule 3 (statements -> statements statement .)
+
+
+state 19
+
+    (10) var_declaration -> VARIAVEL ID . SEMICOLON
+
+    SEMICOLON       shift and go to state 35
+
+
+state 20
+
+    (11) assignment -> ID ASSIGN . expression SEMICOLON
+    (12) expression -> . expression PLUS term
+    (13) expression -> . expression MINUS term
+    (14) expression -> . term
+    (15) term -> . term TIMES factor
+    (16) term -> . term DIVIDE factor
+    (17) term -> . factor
+    (18) factor -> . NUMBER
+    (19) factor -> . STRING
+    (20) factor -> . VERDADEIRO
+    (21) factor -> . FALSO
+    (22) factor -> . ID
+
+    NUMBER          shift and go to state 27
+    STRING          shift and go to state 28
+    VERDADEIRO      shift and go to state 29
+    FALSO           shift and go to state 30
+    ID              shift and go to state 31
+
+    expression                     shift and go to state 36
+    term                           shift and go to state 25
+    factor                         shift and go to state 26
+
+state 21
+
+    (32) if_statement -> SE condition . bloco optional_else
+    (37) bloco -> . LBRACE statements RBRACE
+
+    LBRACE          shift and go to state 38
+
+    bloco                          shift and go to state 37
+
+state 22
+
+    (23) condition -> expression . comparison_operator expression
+    (12) expression -> expression . PLUS term
+    (13) expression -> expression . MINUS term
+    (26) comparison_operator -> . EQUALS
+    (27) comparison_operator -> . NEQUALS
+    (28) comparison_operator -> . LT
+    (29) comparison_operator -> . GT
+    (30) comparison_operator -> . LE
+    (31) comparison_operator -> . GE
+
+    PLUS            shift and go to state 40
+    MINUS           shift and go to state 41
+    EQUALS          shift and go to state 42
+    NEQUALS         shift and go to state 43
+    LT              shift and go to state 44
+    GT              shift and go to state 45
+    LE              shift and go to state 46
+    GE              shift and go to state 47
+
+    comparison_operator            shift and go to state 39
+
+state 23
+
+    (24) condition -> NOT . condition
+    (23) condition -> . expression comparison_operator expression
+    (24) condition -> . NOT condition
+    (25) condition -> . LPAREN condition RPAREN
+    (12) expression -> . expression PLUS term
+    (13) expression -> . expression MINUS term
+    (14) expression -> . term
+    (15) term -> . term TIMES factor
+    (16) term -> . term DIVIDE factor
+    (17) term -> . factor
+    (18) factor -> . NUMBER
+    (19) factor -> . STRING
+    (20) factor -> . VERDADEIRO
+    (21) factor -> . FALSO
+    (22) factor -> . ID
+
+    NOT             shift and go to state 23
+    LPAREN          shift and go to state 24
+    NUMBER          shift and go to state 27
+    STRING          shift and go to state 28
+    VERDADEIRO      shift and go to state 29
+    FALSO           shift and go to state 30
+    ID              shift and go to state 31
+
+    condition                      shift and go to state 48
+    expression                     shift and go to state 22
+    term                           shift and go to state 25
+    factor                         shift and go to state 26
+
+state 24
+
+    (25) condition -> LPAREN . condition RPAREN
+    (23) condition -> . expression comparison_operator expression
+    (24) condition -> . NOT condition
+    (25) condition -> . LPAREN condition RPAREN
+    (12) expression -> . expression PLUS term
+    (13) expression -> . expression MINUS term
+    (14) expression -> . term
+    (15) term -> . term TIMES factor
+    (16) term -> . term DIVIDE factor
+    (17) term -> . factor
+    (18) factor -> . NUMBER
+    (19) factor -> . STRING
+    (20) factor -> . VERDADEIRO
+    (21) factor -> . FALSO
+    (22) factor -> . ID
+
+    NOT             shift and go to state 23
+    LPAREN          shift and go to state 24
+    NUMBER          shift and go to state 27
+    STRING          shift and go to state 28
+    VERDADEIRO      shift and go to state 29
+    FALSO           shift and go to state 30
+    ID              shift and go to state 31
+
+    condition                      shift and go to state 49
+    expression                     shift and go to state 22
+    term                           shift and go to state 25
+    factor                         shift and go to state 26
+
+state 25
+
+    (14) expression -> term .
+    (15) term -> term . TIMES factor
+    (16) term -> term . DIVIDE factor
+
+    PLUS            reduce using rule 14 (expression -> term .)
+    MINUS           reduce using rule 14 (expression -> term .)
+    EQUALS          reduce using rule 14 (expression -> term .)
+    NEQUALS         reduce using rule 14 (expression -> term .)
+    LT              reduce using rule 14 (expression -> term .)
+    GT              reduce using rule 14 (expression -> term .)
+    LE              reduce using rule 14 (expression -> term .)
+    GE              reduce using rule 14 (expression -> term .)
+    SEMICOLON       reduce using rule 14 (expression -> term .)
+    LBRACE          reduce using rule 14 (expression -> term .)
+    RPAREN          reduce using rule 14 (expression -> term .)
+    ATE             reduce using rule 14 (expression -> term .)
+    TIMES           shift and go to state 50
+    DIVIDE          shift and go to state 51
+
+
+state 26
+
+    (17) term -> factor .
+
+    TIMES           reduce using rule 17 (term -> factor .)
+    DIVIDE          reduce using rule 17 (term -> factor .)
+    PLUS            reduce using rule 17 (term -> factor .)
+    MINUS           reduce using rule 17 (term -> factor .)
+    EQUALS          reduce using rule 17 (term -> factor .)
+    NEQUALS         reduce using rule 17 (term -> factor .)
+    LT              reduce using rule 17 (term -> factor .)
+    GT              reduce using rule 17 (term -> factor .)
+    LE              reduce using rule 17 (term -> factor .)
+    GE              reduce using rule 17 (term -> factor .)
+    SEMICOLON       reduce using rule 17 (term -> factor .)
+    LBRACE          reduce using rule 17 (term -> factor .)
+    RPAREN          reduce using rule 17 (term -> factor .)
+    ATE             reduce using rule 17 (term -> factor .)
+
+
+state 27
+
+    (18) factor -> NUMBER .
+
+    TIMES           reduce using rule 18 (factor -> NUMBER .)
+    DIVIDE          reduce using rule 18 (factor -> NUMBER .)
+    PLUS            reduce using rule 18 (factor -> NUMBER .)
+    MINUS           reduce using rule 18 (factor -> NUMBER .)
+    EQUALS          reduce using rule 18 (factor -> NUMBER .)
+    NEQUALS         reduce using rule 18 (factor -> NUMBER .)
+    LT              reduce using rule 18 (factor -> NUMBER .)
+    GT              reduce using rule 18 (factor -> NUMBER .)
+    LE              reduce using rule 18 (factor -> NUMBER .)
+    GE              reduce using rule 18 (factor -> NUMBER .)
+    SEMICOLON       reduce using rule 18 (factor -> NUMBER .)
+    LBRACE          reduce using rule 18 (factor -> NUMBER .)
+    RPAREN          reduce using rule 18 (factor -> NUMBER .)
+    ATE             reduce using rule 18 (factor -> NUMBER .)
+
+
+state 28
+
+    (19) factor -> STRING .
+
+    TIMES           reduce using rule 19 (factor -> STRING .)
+    DIVIDE          reduce using rule 19 (factor -> STRING .)
+    PLUS            reduce using rule 19 (factor -> STRING .)
+    MINUS           reduce using rule 19 (factor -> STRING .)
+    EQUALS          reduce using rule 19 (factor -> STRING .)
+    NEQUALS         reduce using rule 19 (factor -> STRING .)
+    LT              reduce using rule 19 (factor -> STRING .)
+    GT              reduce using rule 19 (factor -> STRING .)
+    LE              reduce using rule 19 (factor -> STRING .)
+    GE              reduce using rule 19 (factor -> STRING .)
+    SEMICOLON       reduce using rule 19 (factor -> STRING .)
+    LBRACE          reduce using rule 19 (factor -> STRING .)
+    RPAREN          reduce using rule 19 (factor -> STRING .)
+    ATE             reduce using rule 19 (factor -> STRING .)
+
+
+state 29
+
+    (20) factor -> VERDADEIRO .
+
+    TIMES           reduce using rule 20 (factor -> VERDADEIRO .)
+    DIVIDE          reduce using rule 20 (factor -> VERDADEIRO .)
+    PLUS            reduce using rule 20 (factor -> VERDADEIRO .)
+    MINUS           reduce using rule 20 (factor -> VERDADEIRO .)
+    EQUALS          reduce using rule 20 (factor -> VERDADEIRO .)
+    NEQUALS         reduce using rule 20 (factor -> VERDADEIRO .)
+    LT              reduce using rule 20 (factor -> VERDADEIRO .)
+    GT              reduce using rule 20 (factor -> VERDADEIRO .)
+    LE              reduce using rule 20 (factor -> VERDADEIRO .)
+    GE              reduce using rule 20 (factor -> VERDADEIRO .)
+    SEMICOLON       reduce using rule 20 (factor -> VERDADEIRO .)
+    LBRACE          reduce using rule 20 (factor -> VERDADEIRO .)
+    RPAREN          reduce using rule 20 (factor -> VERDADEIRO .)
+    ATE             reduce using rule 20 (factor -> VERDADEIRO .)
+
+
+state 30
+
+    (21) factor -> FALSO .
+
+    TIMES           reduce using rule 21 (factor -> FALSO .)
+    DIVIDE          reduce using rule 21 (factor -> FALSO .)
+    PLUS            reduce using rule 21 (factor -> FALSO .)
+    MINUS           reduce using rule 21 (factor -> FALSO .)
+    EQUALS          reduce using rule 21 (factor -> FALSO .)
+    NEQUALS         reduce using rule 21 (factor -> FALSO .)
+    LT              reduce using rule 21 (factor -> FALSO .)
+    GT              reduce using rule 21 (factor -> FALSO .)
+    LE              reduce using rule 21 (factor -> FALSO .)
+    GE              reduce using rule 21 (factor -> FALSO .)
+    SEMICOLON       reduce using rule 21 (factor -> FALSO .)
+    LBRACE          reduce using rule 21 (factor -> FALSO .)
+    RPAREN          reduce using rule 21 (factor -> FALSO .)
+    ATE             reduce using rule 21 (factor -> FALSO .)
+
+
+state 31
+
+    (22) factor -> ID .
+
+    TIMES           reduce using rule 22 (factor -> ID .)
+    DIVIDE          reduce using rule 22 (factor -> ID .)
+    PLUS            reduce using rule 22 (factor -> ID .)
+    MINUS           reduce using rule 22 (factor -> ID .)
+    EQUALS          reduce using rule 22 (factor -> ID .)
+    NEQUALS         reduce using rule 22 (factor -> ID .)
+    LT              reduce using rule 22 (factor -> ID .)
+    GT              reduce using rule 22 (factor -> ID .)
+    LE              reduce using rule 22 (factor -> ID .)
+    GE              reduce using rule 22 (factor -> ID .)
+    SEMICOLON       reduce using rule 22 (factor -> ID .)
+    LBRACE          reduce using rule 22 (factor -> ID .)
+    RPAREN          reduce using rule 22 (factor -> ID .)
+    ATE             reduce using rule 22 (factor -> ID .)
+
+
+state 32
+
+    (35) while_loop -> ENQUANTO condition . bloco
+    (37) bloco -> . LBRACE statements RBRACE
+
+    LBRACE          shift and go to state 38
+
+    bloco                          shift and go to state 52
+
+state 33
+
+    (36) for_loop -> PARA ID . ASSIGN expression ATE expression bloco
+
+    ASSIGN          shift and go to state 53
+
+
+state 34
+
+    (38) print_statement -> IMPRIME expression . SEMICOLON
+    (12) expression -> expression . PLUS term
+    (13) expression -> expression . MINUS term
+
+    SEMICOLON       shift and go to state 54
+    PLUS            shift and go to state 40
+    MINUS           shift and go to state 41
+
+
+state 35
+
+    (10) var_declaration -> VARIAVEL ID SEMICOLON .
+
+    FIM             reduce using rule 10 (var_declaration -> VARIAVEL ID SEMICOLON .)
+    VARIAVEL        reduce using rule 10 (var_declaration -> VARIAVEL ID SEMICOLON .)
+    ID              reduce using rule 10 (var_declaration -> VARIAVEL ID SEMICOLON .)
+    SE              reduce using rule 10 (var_declaration -> VARIAVEL ID SEMICOLON .)
+    ENQUANTO        reduce using rule 10 (var_declaration -> VARIAVEL ID SEMICOLON .)
+    PARA            reduce using rule 10 (var_declaration -> VARIAVEL ID SEMICOLON .)
+    IMPRIME         reduce using rule 10 (var_declaration -> VARIAVEL ID SEMICOLON .)
+    RBRACE          reduce using rule 10 (var_declaration -> VARIAVEL ID SEMICOLON .)
+
+
+state 36
+
+    (11) assignment -> ID ASSIGN expression . SEMICOLON
+    (12) expression -> expression . PLUS term
+    (13) expression -> expression . MINUS term
+
+    SEMICOLON       shift and go to state 55
+    PLUS            shift and go to state 40
+    MINUS           shift and go to state 41
+
+
+state 37
+
+    (32) if_statement -> SE condition bloco . optional_else
+    (33) optional_else -> . SENAO bloco
+    (34) optional_else -> . empty
+    (39) empty -> .
+
+    SENAO           shift and go to state 57
+    FIM             reduce using rule 39 (empty -> .)
+    VARIAVEL        reduce using rule 39 (empty -> .)
+    ID              reduce using rule 39 (empty -> .)
+    SE              reduce using rule 39 (empty -> .)
+    ENQUANTO        reduce using rule 39 (empty -> .)
+    PARA            reduce using rule 39 (empty -> .)
+    IMPRIME         reduce using rule 39 (empty -> .)
+    RBRACE          reduce using rule 39 (empty -> .)
+
+    optional_else                  shift and go to state 56
+    empty                          shift and go to state 58
+
+state 38
+
+    (37) bloco -> LBRACE . statements RBRACE
+    (2) statements -> . statement
+    (3) statements -> . statements statement
+    (4) statement -> . var_declaration
+    (5) statement -> . assignment
+    (6) statement -> . if_statement
+    (7) statement -> . while_loop
+    (8) statement -> . for_loop
+    (9) statement -> . print_statement
+    (10) var_declaration -> . VARIAVEL ID SEMICOLON
+    (11) assignment -> . ID ASSIGN expression SEMICOLON
+    (32) if_statement -> . SE condition bloco optional_else
+    (35) while_loop -> . ENQUANTO condition bloco
+    (36) for_loop -> . PARA ID ASSIGN expression ATE expression bloco
+    (38) print_statement -> . IMPRIME expression SEMICOLON
+
+    VARIAVEL        shift and go to state 11
+    ID              shift and go to state 12
+    SE              shift and go to state 13
+    ENQUANTO        shift and go to state 14
+    PARA            shift and go to state 15
+    IMPRIME         shift and go to state 16
+
+    statements                     shift and go to state 59
+    statement                      shift and go to state 4
+    var_declaration                shift and go to state 5
+    assignment                     shift and go to state 6
+    if_statement                   shift and go to state 7
+    while_loop                     shift and go to state 8
+    for_loop                       shift and go to state 9
+    print_statement                shift and go to state 10
+
+state 39
+
+    (23) condition -> expression comparison_operator . expression
+    (12) expression -> . expression PLUS term
+    (13) expression -> . expression MINUS term
+    (14) expression -> . term
+    (15) term -> . term TIMES factor
+    (16) term -> . term DIVIDE factor
+    (17) term -> . factor
+    (18) factor -> . NUMBER
+    (19) factor -> . STRING
+    (20) factor -> . VERDADEIRO
+    (21) factor -> . FALSO
+    (22) factor -> . ID
+
+    NUMBER          shift and go to state 27
+    STRING          shift and go to state 28
+    VERDADEIRO      shift and go to state 29
+    FALSO           shift and go to state 30
+    ID              shift and go to state 31
+
+    expression                     shift and go to state 60
+    term                           shift and go to state 25
+    factor                         shift and go to state 26
+
+state 40
+
+    (12) expression -> expression PLUS . term
+    (15) term -> . term TIMES factor
+    (16) term -> . term DIVIDE factor
+    (17) term -> . factor
+    (18) factor -> . NUMBER
+    (19) factor -> . STRING
+    (20) factor -> . VERDADEIRO
+    (21) factor -> . FALSO
+    (22) factor -> . ID
+
+    NUMBER          shift and go to state 27
+    STRING          shift and go to state 28
+    VERDADEIRO      shift and go to state 29
+    FALSO           shift and go to state 30
+    ID              shift and go to state 31
+
+    term                           shift and go to state 61
+    factor                         shift and go to state 26
+
+state 41
+
+    (13) expression -> expression MINUS . term
+    (15) term -> . term TIMES factor
+    (16) term -> . term DIVIDE factor
+    (17) term -> . factor
+    (18) factor -> . NUMBER
+    (19) factor -> . STRING
+    (20) factor -> . VERDADEIRO
+    (21) factor -> . FALSO
+    (22) factor -> . ID
+
+    NUMBER          shift and go to state 27
+    STRING          shift and go to state 28
+    VERDADEIRO      shift and go to state 29
+    FALSO           shift and go to state 30
+    ID              shift and go to state 31
+
+    term                           shift and go to state 62
+    factor                         shift and go to state 26
+
+state 42
+
+    (26) comparison_operator -> EQUALS .
+
+    NUMBER          reduce using rule 26 (comparison_operator -> EQUALS .)
+    STRING          reduce using rule 26 (comparison_operator -> EQUALS .)
+    VERDADEIRO      reduce using rule 26 (comparison_operator -> EQUALS .)
+    FALSO           reduce using rule 26 (comparison_operator -> EQUALS .)
+    ID              reduce using rule 26 (comparison_operator -> EQUALS .)
+
+
+state 43
+
+    (27) comparison_operator -> NEQUALS .
+
+    NUMBER          reduce using rule 27 (comparison_operator -> NEQUALS .)
+    STRING          reduce using rule 27 (comparison_operator -> NEQUALS .)
+    VERDADEIRO      reduce using rule 27 (comparison_operator -> NEQUALS .)
+    FALSO           reduce using rule 27 (comparison_operator -> NEQUALS .)
+    ID              reduce using rule 27 (comparison_operator -> NEQUALS .)
+
+
+state 44
+
+    (28) comparison_operator -> LT .
+
+    NUMBER          reduce using rule 28 (comparison_operator -> LT .)
+    STRING          reduce using rule 28 (comparison_operator -> LT .)
+    VERDADEIRO      reduce using rule 28 (comparison_operator -> LT .)
+    FALSO           reduce using rule 28 (comparison_operator -> LT .)
+    ID              reduce using rule 28 (comparison_operator -> LT .)
+
+
+state 45
+
+    (29) comparison_operator -> GT .
+
+    NUMBER          reduce using rule 29 (comparison_operator -> GT .)
+    STRING          reduce using rule 29 (comparison_operator -> GT .)
+    VERDADEIRO      reduce using rule 29 (comparison_operator -> GT .)
+    FALSO           reduce using rule 29 (comparison_operator -> GT .)
+    ID              reduce using rule 29 (comparison_operator -> GT .)
+
+
+state 46
+
+    (30) comparison_operator -> LE .
+
+    NUMBER          reduce using rule 30 (comparison_operator -> LE .)
+    STRING          reduce using rule 30 (comparison_operator -> LE .)
+    VERDADEIRO      reduce using rule 30 (comparison_operator -> LE .)
+    FALSO           reduce using rule 30 (comparison_operator -> LE .)
+    ID              reduce using rule 30 (comparison_operator -> LE .)
+
+
+state 47
+
+    (31) comparison_operator -> GE .
+
+    NUMBER          reduce using rule 31 (comparison_operator -> GE .)
+    STRING          reduce using rule 31 (comparison_operator -> GE .)
+    VERDADEIRO      reduce using rule 31 (comparison_operator -> GE .)
+    FALSO           reduce using rule 31 (comparison_operator -> GE .)
+    ID              reduce using rule 31 (comparison_operator -> GE .)
+
+
+state 48
+
+    (24) condition -> NOT condition .
+
+    LBRACE          reduce using rule 24 (condition -> NOT condition .)
+    RPAREN          reduce using rule 24 (condition -> NOT condition .)
+
+
+state 49
+
+    (25) condition -> LPAREN condition . RPAREN
+
+    RPAREN          shift and go to state 63
+
+
+state 50
+
+    (15) term -> term TIMES . factor
+    (18) factor -> . NUMBER
+    (19) factor -> . STRING
+    (20) factor -> . VERDADEIRO
+    (21) factor -> . FALSO
+    (22) factor -> . ID
+
+    NUMBER          shift and go to state 27
+    STRING          shift and go to state 28
+    VERDADEIRO      shift and go to state 29
+    FALSO           shift and go to state 30
+    ID              shift and go to state 31
+
+    factor                         shift and go to state 64
+
+state 51
+
+    (16) term -> term DIVIDE . factor
+    (18) factor -> . NUMBER
+    (19) factor -> . STRING
+    (20) factor -> . VERDADEIRO
+    (21) factor -> . FALSO
+    (22) factor -> . ID
+
+    NUMBER          shift and go to state 27
+    STRING          shift and go to state 28
+    VERDADEIRO      shift and go to state 29
+    FALSO           shift and go to state 30
+    ID              shift and go to state 31
+
+    factor                         shift and go to state 65
+
+state 52
+
+    (35) while_loop -> ENQUANTO condition bloco .
+
+    FIM             reduce using rule 35 (while_loop -> ENQUANTO condition bloco .)
+    VARIAVEL        reduce using rule 35 (while_loop -> ENQUANTO condition bloco .)
+    ID              reduce using rule 35 (while_loop -> ENQUANTO condition bloco .)
+    SE              reduce using rule 35 (while_loop -> ENQUANTO condition bloco .)
+    ENQUANTO        reduce using rule 35 (while_loop -> ENQUANTO condition bloco .)
+    PARA            reduce using rule 35 (while_loop -> ENQUANTO condition bloco .)
+    IMPRIME         reduce using rule 35 (while_loop -> ENQUANTO condition bloco .)
+    RBRACE          reduce using rule 35 (while_loop -> ENQUANTO condition bloco .)
+
+
+state 53
+
+    (36) for_loop -> PARA ID ASSIGN . expression ATE expression bloco
+    (12) expression -> . expression PLUS term
+    (13) expression -> . expression MINUS term
+    (14) expression -> . term
+    (15) term -> . term TIMES factor
+    (16) term -> . term DIVIDE factor
+    (17) term -> . factor
+    (18) factor -> . NUMBER
+    (19) factor -> . STRING
+    (20) factor -> . VERDADEIRO
+    (21) factor -> . FALSO
+    (22) factor -> . ID
+
+    NUMBER          shift and go to state 27
+    STRING          shift and go to state 28
+    VERDADEIRO      shift and go to state 29
+    FALSO           shift and go to state 30
+    ID              shift and go to state 31
+
+    expression                     shift and go to state 66
+    term                           shift and go to state 25
+    factor                         shift and go to state 26
+
+state 54
+
+    (38) print_statement -> IMPRIME expression SEMICOLON .
+
+    FIM             reduce using rule 38 (print_statement -> IMPRIME expression SEMICOLON .)
+    VARIAVEL        reduce using rule 38 (print_statement -> IMPRIME expression SEMICOLON .)
+    ID              reduce using rule 38 (print_statement -> IMPRIME expression SEMICOLON .)
+    SE              reduce using rule 38 (print_statement -> IMPRIME expression SEMICOLON .)
+    ENQUANTO        reduce using rule 38 (print_statement -> IMPRIME expression SEMICOLON .)
+    PARA            reduce using rule 38 (print_statement -> IMPRIME expression SEMICOLON .)
+    IMPRIME         reduce using rule 38 (print_statement -> IMPRIME expression SEMICOLON .)
+    RBRACE          reduce using rule 38 (print_statement -> IMPRIME expression SEMICOLON .)
+
+
+state 55
+
+    (11) assignment -> ID ASSIGN expression SEMICOLON .
+
+    FIM             reduce using rule 11 (assignment -> ID ASSIGN expression SEMICOLON .)
+    VARIAVEL        reduce using rule 11 (assignment -> ID ASSIGN expression SEMICOLON .)
+    ID              reduce using rule 11 (assignment -> ID ASSIGN expression SEMICOLON .)
+    SE              reduce using rule 11 (assignment -> ID ASSIGN expression SEMICOLON .)
+    ENQUANTO        reduce using rule 11 (assignment -> ID ASSIGN expression SEMICOLON .)
+    PARA            reduce using rule 11 (assignment -> ID ASSIGN expression SEMICOLON .)
+    IMPRIME         reduce using rule 11 (assignment -> ID ASSIGN expression SEMICOLON .)
+    RBRACE          reduce using rule 11 (assignment -> ID ASSIGN expression SEMICOLON .)
+
+
+state 56
+
+    (32) if_statement -> SE condition bloco optional_else .
+
+    FIM             reduce using rule 32 (if_statement -> SE condition bloco optional_else .)
+    VARIAVEL        reduce using rule 32 (if_statement -> SE condition bloco optional_else .)
+    ID              reduce using rule 32 (if_statement -> SE condition bloco optional_else .)
+    SE              reduce using rule 32 (if_statement -> SE condition bloco optional_else .)
+    ENQUANTO        reduce using rule 32 (if_statement -> SE condition bloco optional_else .)
+    PARA            reduce using rule 32 (if_statement -> SE condition bloco optional_else .)
+    IMPRIME         reduce using rule 32 (if_statement -> SE condition bloco optional_else .)
+    RBRACE          reduce using rule 32 (if_statement -> SE condition bloco optional_else .)
+
+
+state 57
+
+    (33) optional_else -> SENAO . bloco
+    (37) bloco -> . LBRACE statements RBRACE
+
+    LBRACE          shift and go to state 38
+
+    bloco                          shift and go to state 67
+
+state 58
+
+    (34) optional_else -> empty .
+
+    FIM             reduce using rule 34 (optional_else -> empty .)
+    VARIAVEL        reduce using rule 34 (optional_else -> empty .)
+    ID              reduce using rule 34 (optional_else -> empty .)
+    SE              reduce using rule 34 (optional_else -> empty .)
+    ENQUANTO        reduce using rule 34 (optional_else -> empty .)
+    PARA            reduce using rule 34 (optional_else -> empty .)
+    IMPRIME         reduce using rule 34 (optional_else -> empty .)
+    RBRACE          reduce using rule 34 (optional_else -> empty .)
+
+
+state 59
+
+    (37) bloco -> LBRACE statements . RBRACE
+    (3) statements -> statements . statement
+    (4) statement -> . var_declaration
+    (5) statement -> . assignment
+    (6) statement -> . if_statement
+    (7) statement -> . while_loop
+    (8) statement -> . for_loop
+    (9) statement -> . print_statement
+    (10) var_declaration -> . VARIAVEL ID SEMICOLON
+    (11) assignment -> . ID ASSIGN expression SEMICOLON
+    (32) if_statement -> . SE condition bloco optional_else
+    (35) while_loop -> . ENQUANTO condition bloco
+    (36) for_loop -> . PARA ID ASSIGN expression ATE expression bloco
+    (38) print_statement -> . IMPRIME expression SEMICOLON
+
+    RBRACE          shift and go to state 68
+    VARIAVEL        shift and go to state 11
+    ID              shift and go to state 12
+    SE              shift and go to state 13
+    ENQUANTO        shift and go to state 14
+    PARA            shift and go to state 15
+    IMPRIME         shift and go to state 16
+
+    statement                      shift and go to state 18
+    var_declaration                shift and go to state 5
+    assignment                     shift and go to state 6
+    if_statement                   shift and go to state 7
+    while_loop                     shift and go to state 8
+    for_loop                       shift and go to state 9
+    print_statement                shift and go to state 10
+
+state 60
+
+    (23) condition -> expression comparison_operator expression .
+    (12) expression -> expression . PLUS term
+    (13) expression -> expression . MINUS term
+
+    LBRACE          reduce using rule 23 (condition -> expression comparison_operator expression .)
+    RPAREN          reduce using rule 23 (condition -> expression comparison_operator expression .)
+    PLUS            shift and go to state 40
+    MINUS           shift and go to state 41
+
+
+state 61
+
+    (12) expression -> expression PLUS term .
+    (15) term -> term . TIMES factor
+    (16) term -> term . DIVIDE factor
+
+    PLUS            reduce using rule 12 (expression -> expression PLUS term .)
+    MINUS           reduce using rule 12 (expression -> expression PLUS term .)
+    EQUALS          reduce using rule 12 (expression -> expression PLUS term .)
+    NEQUALS         reduce using rule 12 (expression -> expression PLUS term .)
+    LT              reduce using rule 12 (expression -> expression PLUS term .)
+    GT              reduce using rule 12 (expression -> expression PLUS term .)
+    LE              reduce using rule 12 (expression -> expression PLUS term .)
+    GE              reduce using rule 12 (expression -> expression PLUS term .)
+    SEMICOLON       reduce using rule 12 (expression -> expression PLUS term .)
+    LBRACE          reduce using rule 12 (expression -> expression PLUS term .)
+    RPAREN          reduce using rule 12 (expression -> expression PLUS term .)
+    ATE             reduce using rule 12 (expression -> expression PLUS term .)
+    TIMES           shift and go to state 50
+    DIVIDE          shift and go to state 51
+
+
+state 62
+
+    (13) expression -> expression MINUS term .
+    (15) term -> term . TIMES factor
+    (16) term -> term . DIVIDE factor
+
+    PLUS            reduce using rule 13 (expression -> expression MINUS term .)
+    MINUS           reduce using rule 13 (expression -> expression MINUS term .)
+    EQUALS          reduce using rule 13 (expression -> expression MINUS term .)
+    NEQUALS         reduce using rule 13 (expression -> expression MINUS term .)
+    LT              reduce using rule 13 (expression -> expression MINUS term .)
+    GT              reduce using rule 13 (expression -> expression MINUS term .)
+    LE              reduce using rule 13 (expression -> expression MINUS term .)
+    GE              reduce using rule 13 (expression -> expression MINUS term .)
+    SEMICOLON       reduce using rule 13 (expression -> expression MINUS term .)
+    LBRACE          reduce using rule 13 (expression -> expression MINUS term .)
+    RPAREN          reduce using rule 13 (expression -> expression MINUS term .)
+    ATE             reduce using rule 13 (expression -> expression MINUS term .)
+    TIMES           shift and go to state 50
+    DIVIDE          shift and go to state 51
+
+
+state 63
+
+    (25) condition -> LPAREN condition RPAREN .
+
+    LBRACE          reduce using rule 25 (condition -> LPAREN condition RPAREN .)
+    RPAREN          reduce using rule 25 (condition -> LPAREN condition RPAREN .)
+
+
+state 64
+
+    (15) term -> term TIMES factor .
+
+    TIMES           reduce using rule 15 (term -> term TIMES factor .)
+    DIVIDE          reduce using rule 15 (term -> term TIMES factor .)
+    PLUS            reduce using rule 15 (term -> term TIMES factor .)
+    MINUS           reduce using rule 15 (term -> term TIMES factor .)
+    EQUALS          reduce using rule 15 (term -> term TIMES factor .)
+    NEQUALS         reduce using rule 15 (term -> term TIMES factor .)
+    LT              reduce using rule 15 (term -> term TIMES factor .)
+    GT              reduce using rule 15 (term -> term TIMES factor .)
+    LE              reduce using rule 15 (term -> term TIMES factor .)
+    GE              reduce using rule 15 (term -> term TIMES factor .)
+    SEMICOLON       reduce using rule 15 (term -> term TIMES factor .)
+    LBRACE          reduce using rule 15 (term -> term TIMES factor .)
+    RPAREN          reduce using rule 15 (term -> term TIMES factor .)
+    ATE             reduce using rule 15 (term -> term TIMES factor .)
+
+
+state 65
+
+    (16) term -> term DIVIDE factor .
+
+    TIMES           reduce using rule 16 (term -> term DIVIDE factor .)
+    DIVIDE          reduce using rule 16 (term -> term DIVIDE factor .)
+    PLUS            reduce using rule 16 (term -> term DIVIDE factor .)
+    MINUS           reduce using rule 16 (term -> term DIVIDE factor .)
+    EQUALS          reduce using rule 16 (term -> term DIVIDE factor .)
+    NEQUALS         reduce using rule 16 (term -> term DIVIDE factor .)
+    LT              reduce using rule 16 (term -> term DIVIDE factor .)
+    GT              reduce using rule 16 (term -> term DIVIDE factor .)
+    LE              reduce using rule 16 (term -> term DIVIDE factor .)
+    GE              reduce using rule 16 (term -> term DIVIDE factor .)
+    SEMICOLON       reduce using rule 16 (term -> term DIVIDE factor .)
+    LBRACE          reduce using rule 16 (term -> term DIVIDE factor .)
+    RPAREN          reduce using rule 16 (term -> term DIVIDE factor .)
+    ATE             reduce using rule 16 (term -> term DIVIDE factor .)
+
+
+state 66
+
+    (36) for_loop -> PARA ID ASSIGN expression . ATE expression bloco
+    (12) expression -> expression . PLUS term
+    (13) expression -> expression . MINUS term
+
+    ATE             shift and go to state 69
+    PLUS            shift and go to state 40
+    MINUS           shift and go to state 41
+
+
+state 67
+
+    (33) optional_else -> SENAO bloco .
+
+    FIM             reduce using rule 33 (optional_else -> SENAO bloco .)
+    VARIAVEL        reduce using rule 33 (optional_else -> SENAO bloco .)
+    ID              reduce using rule 33 (optional_else -> SENAO bloco .)
+    SE              reduce using rule 33 (optional_else -> SENAO bloco .)
+    ENQUANTO        reduce using rule 33 (optional_else -> SENAO bloco .)
+    PARA            reduce using rule 33 (optional_else -> SENAO bloco .)
+    IMPRIME         reduce using rule 33 (optional_else -> SENAO bloco .)
+    RBRACE          reduce using rule 33 (optional_else -> SENAO bloco .)
+
+
+state 68
+
+    (37) bloco -> LBRACE statements RBRACE .
+
+    SENAO           reduce using rule 37 (bloco -> LBRACE statements RBRACE .)
+    FIM             reduce using rule 37 (bloco -> LBRACE statements RBRACE .)
+    VARIAVEL        reduce using rule 37 (bloco -> LBRACE statements RBRACE .)
+    ID              reduce using rule 37 (bloco -> LBRACE statements RBRACE .)
+    SE              reduce using rule 37 (bloco -> LBRACE statements RBRACE .)
+    ENQUANTO        reduce using rule 37 (bloco -> LBRACE statements RBRACE .)
+    PARA            reduce using rule 37 (bloco -> LBRACE statements RBRACE .)
+    IMPRIME         reduce using rule 37 (bloco -> LBRACE statements RBRACE .)
+    RBRACE          reduce using rule 37 (bloco -> LBRACE statements RBRACE .)
+
+
+state 69
+
+    (36) for_loop -> PARA ID ASSIGN expression ATE . expression bloco
+    (12) expression -> . expression PLUS term
+    (13) expression -> . expression MINUS term
+    (14) expression -> . term
+    (15) term -> . term TIMES factor
+    (16) term -> . term DIVIDE factor
+    (17) term -> . factor
+    (18) factor -> . NUMBER
+    (19) factor -> . STRING
+    (20) factor -> . VERDADEIRO
+    (21) factor -> . FALSO
+    (22) factor -> . ID
+
+    NUMBER          shift and go to state 27
+    STRING          shift and go to state 28
+    VERDADEIRO      shift and go to state 29
+    FALSO           shift and go to state 30
+    ID              shift and go to state 31
+
+    expression                     shift and go to state 70
+    term                           shift and go to state 25
+    factor                         shift and go to state 26
+
+state 70
+
+    (36) for_loop -> PARA ID ASSIGN expression ATE expression . bloco
+    (12) expression -> expression . PLUS term
+    (13) expression -> expression . MINUS term
+    (37) bloco -> . LBRACE statements RBRACE
+
+    PLUS            shift and go to state 40
+    MINUS           shift and go to state 41
+    LBRACE          shift and go to state 38
+
+    bloco                          shift and go to state 71
+
+state 71
+
+    (36) for_loop -> PARA ID ASSIGN expression ATE expression bloco .
+
+    FIM             reduce using rule 36 (for_loop -> PARA ID ASSIGN expression ATE expression bloco .)
+    VARIAVEL        reduce using rule 36 (for_loop -> PARA ID ASSIGN expression ATE expression bloco .)
+    ID              reduce using rule 36 (for_loop -> PARA ID ASSIGN expression ATE expression bloco .)
+    SE              reduce using rule 36 (for_loop -> PARA ID ASSIGN expression ATE expression bloco .)
+    ENQUANTO        reduce using rule 36 (for_loop -> PARA ID ASSIGN expression ATE expression bloco .)
+    PARA            reduce using rule 36 (for_loop -> PARA ID ASSIGN expression ATE expression bloco .)
+    IMPRIME         reduce using rule 36 (for_loop -> PARA ID ASSIGN expression ATE expression bloco .)
+    RBRACE          reduce using rule 36 (for_loop -> PARA ID ASSIGN expression ATE expression bloco .)
+

@@ -1,0 +1,8 @@
+vumbora
+    coisinha contador;
+    contador recebeu 1;
+    enquanto_rolar contador menor_ou_igual 5 {
+        bote_fé contador;
+        contador recebeu contador mais_um 1;
+    }
+acabou_mermo
