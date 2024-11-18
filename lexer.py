@@ -1,7 +1,17 @@
 from ply.lex import lex
 
 
-tokens = (
+reserved = {
+    "numeric": "NUMERIC",
+    "string": "STRING",
+    "boolean": "BOOLEAN",
+    "if": "IF",
+    "else": "ELSE",
+    "while": "WHILE",
+    "print": "PRINT",
+}
+
+tokens = [
     "PLUS",
     "MINUS",
     "TIMES",
@@ -16,21 +26,11 @@ tokens = (
     "GE",
     "NAME",
     "NUMBER",
-    "LBRACE",
-    "RBRACE",
+    "LBRACKET",
+    "RBRACKET",
     "ASSIGN",
     "SEMICOLON",
-)
-
-reserved = {
-    "numeric": "NUMERIC",
-    "string": "STRING",
-    "boolean": "BOOLEAN",
-    "if": "IF",
-    "else": "ELSE",
-    "while": "WHILE",
-    "print": "PRINT",
-}
+] + list(reserved.values())
 
 t_ignore = " \t"
 
@@ -47,10 +47,15 @@ t_LE = r"<="
 t_GE = r">="
 t_LT = r"<"
 t_GT = r">"
-t_LBRACE = r"\{"
-t_RBRACE = r"\}"
+t_LBRACKET = r"\{"
+t_RBRACKET = r"\}"
 t_SEMICOLON = r";"
-t_NAME = r"[a-zA-Z_][a-zA-Z0-9_]*"
+
+
+def t_NAME(t):
+    r"[a-zA-Z_][a-zA-Z0-9_]*"
+    t.type = reserved.get(t.value, "NAME")
+    return t
 
 
 def indent(code):
