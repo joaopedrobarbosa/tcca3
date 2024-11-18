@@ -272,7 +272,7 @@ if __name__ == "__main__":
         print("x is less than or equal to 5");
     }
 
-    for (i=0; i < 10; i=i+1) {
+    for (i=0; i=i+1) {
         print("MANOWELL");
     }
     """
