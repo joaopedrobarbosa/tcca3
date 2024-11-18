@@ -8,6 +8,8 @@ reserved = {
     "while": "WHILE",
     "for": "FOR",
     "print": "PRINT",
+    "true": "BOOLEAN",
+    "false": "BOOLEAN",
 }
 
 # List of token names
@@ -31,7 +33,7 @@ tokens = [
     "NAME",
     "NUMBER",
     "STRING",
-] + list(reserved.values())
+] + list(set(reserved.values()))
 
 # Ignored characters
 t_ignore = " \t"
@@ -220,6 +222,11 @@ def p_expression_factor(p):
     p[0] = p[1]
 
 
+def p_factor_boolean(p):
+    "factor : BOOLEAN"
+    p[0] = p[1]
+
+
 def p_factor_number(p):
     "factor : NUMBER"
     p[0] = str(p[1])
@@ -262,7 +269,7 @@ parser = yacc()
 
 if __name__ == "__main__":
     # Test input
-    ast = parser.parse(
+    output = parser.parse(
         """
     x = 2 * 3 + 4 * (5 - x);
 
@@ -275,7 +282,11 @@ if __name__ == "__main__":
     for (i=0; i < 10; i=i+1) {
         print("MANOWELL");
     }
+
+    if (true) {
+        print(false);
+    }
     """
     )
 
-    print(ast)
+    print(output)
