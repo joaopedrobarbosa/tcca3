@@ -222,9 +222,9 @@ def p_expression_factor(p):
     p[0] = p[1]
 
 
-def p_factor_boolean(p):
+def p_factor_boolean(p: list[str]):
     "factor : BOOLEAN"
-    p[0] = p[1]
+    p[0] = p[1].capitalize()
 
 
 def p_factor_number(p):
@@ -265,28 +265,3 @@ def indent(code):
 
 
 parser = yacc()
-
-
-if __name__ == "__main__":
-    # Test input
-    output = parser.parse(
-        """
-    x = 2 * 3 + 4 * (5 - x);
-
-    if (x > 5) {
-        print("x is greater than 5");
-    } else {
-        print("x is less than or equal to 5");
-    }
-
-    for (i=0; i < 10; i=i+1) {
-        print("MANOWELL");
-    }
-
-    if (true) {
-        print(false);
-    }
-    """
-    )
-
-    print(output)
