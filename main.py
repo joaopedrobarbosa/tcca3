@@ -1,17 +1,13 @@
 from parser import parser
+import os
 
 
 if __name__ == "__main__":
+    with open("./program.bahia") as program:
+        lines = program.readlines()
 
-    # Parse an expression
-    ast = parser.parse(
-        """
-    x = 2 * 3 + 4 * (5 - x)
+        # Test input
+        output = parser.parse("\n".join(lines))
 
-    if x > 5:
-        print("x is greater than 5")
-    else:
-        print("x is less than or equal to 5")
-    """
-    )
-    print(ast)
+    with open("./output.py", "w") as py_output:
+        py_output.write(output)
