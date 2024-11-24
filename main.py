@@ -30,7 +30,6 @@ async def compile(request: Request):
         output = parser.parse(code)
         if not output:
             raise Exception('Invalid Syntax')
-        print('output', output)
         return templates.TemplateResponse(
         request=request, name="code-input.html", context={"codeOutput": output, "previousCode": code}
     )
@@ -48,7 +47,6 @@ if __name__ == "__main__":
 
     with open(args.filename) as program:
         lines = program.readlines()
-        # Test input
         output = parser.parse("\n".join(lines))
         print(output)
 

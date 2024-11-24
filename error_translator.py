@@ -2,7 +2,6 @@ class ErrorTranslator:
     def __init__(self, err: Exception):
         self.__error = err
     def read_error(self):
-        print('error', self.__error)
         if('Invalid' in str(self.__error)):
             return  'Maluquice eu não entendo, painhô!'
         if('NoneType' in str(self.__error)):
