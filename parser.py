@@ -3,13 +3,13 @@ from ply.yacc import yacc
 
 # Reserved words
 reserved = {
-    "if": "IF",
-    "else": "ELSE",
-    "while": "WHILE",
-    "for": "FOR",
-    "print": "PRINT",
-    "true": "BOOLEAN",
-    "false": "BOOLEAN",
+    "se": "IF",
+    "senao": "ELSE",
+    "equanto": "WHILE",
+    "vai_ate": "FOR",
+    "amostre": "PRINT",
+    "eh_mermo": "BOOLEAN",
+    "migue": "BOOLEAN",
 }
 
 # List of token names
