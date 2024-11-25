@@ -5,7 +5,7 @@ from ply.yacc import yacc
 reserved = {
     "se": "IF",
     "senao": "ELSE",
-    "equanto": "WHILE",
+    "enquanto": "WHILE",
     "vai_de": "FOR",
     "amostre": "PRINT",
     "eh_mermo": "BOOLEAN",
@@ -220,7 +220,10 @@ def p_expression_factor(p):
 
 def p_factor_boolean(p: list[str]):
     "factor : BOOLEAN"
-    p[0] = p[1].capitalize()
+    if p[1] == "migue":
+        p[0] = "False"
+    else:
+        p[0] = "True"
 
 
 def p_factor_number(p):

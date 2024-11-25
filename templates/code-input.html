@@ -6,14 +6,18 @@
     <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet" />
   </head>
   <body>
-    <form action="/" method="post">
-      <label for="code-input">Compilador de Baiano:</label>
-      <textarea id="code-input" name="codeInput">{{previousCode}}</textarea>
-      <button type="submit">Submit</button>
-    </form>
-    <span>Receba seu Python aí vá:</span>
-    <pre><div>
-      <p>{{ codeOutput | safe }}</p>
-    </div></pre>
+    <div class="code-container">
+      <form action="/" method="post">
+        <label for="code-input">Compilador de Baiano:</label>
+        <textarea id="code-input" name="codeInput">{{previousCode}}</textarea>
+        <button type="submit">Submit</button>
+      </form>
+      <div>
+        <label for="code-input">Receba:</label>
+        <div style="font-size: 20px">
+          <pre>{{ codeOutput | safe }}</pre>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

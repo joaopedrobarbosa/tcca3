@@ -4,20 +4,36 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+.code-container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+  padding: 15px;
+  margin: 15px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  height: 50%;
+}
+
 form {
   display: flex;
   flex-direction: column;
-  height: 50%;
+  height: 100%;
   gap: 15px;
 }
+
 label {
   font-size: 30px;
   line-height: 36px;
 }
+
 span {
   font-size: 30px;
   line-height: 36px;
 }
+
 button {
   padding: 10px;
   width: fit-content;
@@ -42,10 +58,10 @@ button {
   box-sizing: border-box;
 }
 
-div {
+.code-output {
   padding: 0px 10px;
   background-color: #f8f8f8;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
 }
