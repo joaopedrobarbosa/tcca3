@@ -39,7 +39,12 @@ async def compile(request: Request):
         print("error", e)
         error = ErrorTranslator(e).read_error()
         return templates.TemplateResponse(
-            request=request, name="code-input.html", context={"codeOutput": error}
+            request=request,
+            name="code-input.html",
+            context={
+                "codeOutput": error,
+                "previousCode": code,
+            },
         )
 
 

@@ -33,6 +33,7 @@ tokens = [
     "NAME",
     "NUMBER",
     "STRING",
+    "FORRANGE",
 ] + list(set(reserved.values()))
 
 # Ignored characters
@@ -55,6 +56,7 @@ t_LBRACE = r"\{"
 t_RBRACE = r"\}"
 t_ASSIGN = r"="
 t_SEMICOLON = r";"
+t_FORRANGE = r" ate "
 
 
 def t_NUMBER(t):
@@ -131,19 +133,15 @@ def p_statement(p):
 
 
 def p_for_statement(p):
-    "for_statement : FOR LPAREN expression_opt SEMICOLON expression_opt SEMICOLON expression_opt RPAREN block_statement"
-    initialization = p[3] if p[3] else ""
-    condition = p[5] if p[5] else "True"
-    increment = p[7] if p[7] else ""
-    loop_body = p[9]
+    "for_statement : FOR LPAREN NUMBER SEMICOLON NUMBER RPAREN block_statement"
+    print(p)
+    starting_index = p[3]
+    finish_index = p[5]
+    loop_body = p[7]
 
     loop_code = ""
-    if initialization:
-        loop_code += f"{initialization}\n"
-    loop_code += f"while ({condition}):\n"
+    loop_code += f"for range({starting_index},{finish_index}):\n"
     loop_body_indented = indent(loop_body)
-    if increment:
-        loop_body_indented += f"    {increment}\n"
     loop_code += loop_body_indented
     p[0] = loop_code
 
