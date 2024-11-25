@@ -41,7 +41,10 @@ async def compile(request: Request):
         return templates.TemplateResponse(
             request=request,
             name="code-input.html",
-            context={"codeOutput": error, "previousCode": code},
+            context={
+                "codeOutput": error,
+                "previousCode": code,
+            },
         )
 
 

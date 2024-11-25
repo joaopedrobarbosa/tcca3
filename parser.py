@@ -6,10 +6,11 @@ reserved = {
     "se": "IF",
     "senao": "ELSE",
     "equanto": "WHILE",
-    "vai_ate": "FOR",
+    "vai_de": "FOR",
     "amostre": "PRINT",
     "eh_mermo": "BOOLEAN",
     "migue": "BOOLEAN",
+    "ate": "FORRANGE",
 }
 
 # List of token names
@@ -131,16 +132,13 @@ def p_statement(p):
 
 
 def p_for_statement(p):
-    "for_statement : FOR LPAREN expression_opt SEMICOLON expression_opt RPAREN block_statement"
-    initialization = p[3] if p[3] else ""
-    condition = p[5] if p[5] else "True"
-    # increment = p[7] if p[7] else ""
+    "for_statement : FOR LPAREN NUMBER FORRANGE NUMBER RPAREN block_statement"
+    starting_index = p[3]
+    finish_index = p[5]
     loop_body = p[7]
 
     loop_code = ""
-    if initialization:
-        loop_code += f"{initialization}\n"
-    loop_code += f"while ({condition}):\n"
+    loop_code += f"for range({starting_index},{finish_index}):\n"
     loop_body_indented = indent(loop_body)
     loop_code += loop_body_indented
     p[0] = loop_code
