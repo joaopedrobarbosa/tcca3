@@ -6,10 +6,11 @@ reserved = {
     "se": "IF",
     "senao": "ELSE",
     "equanto": "WHILE",
-    "vai_ate": "FOR",
+    "vai_de": "FOR",
     "amostre": "PRINT",
     "eh_mermo": "BOOLEAN",
     "migue": "BOOLEAN",
+    "ate": "FORRANGE",
 }
 
 # List of token names
@@ -33,7 +34,6 @@ tokens = [
     "NAME",
     "NUMBER",
     "STRING",
-    "FORRANGE",
 ] + list(set(reserved.values()))
 
 # Ignored characters
@@ -56,7 +56,6 @@ t_LBRACE = r"\{"
 t_RBRACE = r"\}"
 t_ASSIGN = r"="
 t_SEMICOLON = r";"
-t_FORRANGE = r" ate "
 
 
 def t_NUMBER(t):
@@ -133,8 +132,7 @@ def p_statement(p):
 
 
 def p_for_statement(p):
-    "for_statement : FOR LPAREN NUMBER SEMICOLON NUMBER RPAREN block_statement"
-    print(p)
+    "for_statement : FOR LPAREN NUMBER FORRANGE NUMBER RPAREN block_statement"
     starting_index = p[3]
     finish_index = p[5]
     loop_body = p[7]
