@@ -3,13 +3,14 @@ from ply.yacc import yacc
 
 # Reserved words
 reserved = {
-    "if": "IF",
-    "else": "ELSE",
-    "while": "WHILE",
-    "for": "FOR",
-    "print": "PRINT",
-    "true": "BOOLEAN",
-    "false": "BOOLEAN",
+    "se": "IF",
+    "senao": "ELSE",
+    "enquanto": "WHILE",
+    "vai_de": "FOR",
+    "amostre": "PRINT",
+    "eh_mermo": "BOOLEAN",
+    "migue": "BOOLEAN",
+    "ate": "FORRANGE",
 }
 
 # List of token names
@@ -36,7 +37,8 @@ tokens = [
 ] + list(set(reserved.values()))
 
 # Ignored characters
-t_ignore = " \t"
+t_ignore = " \t\r"
+
 
 # Token matching rules
 t_PLUS = r"\+"
@@ -131,19 +133,14 @@ def p_statement(p):
 
 
 def p_for_statement(p):
-    "for_statement : FOR LPAREN expression_opt SEMICOLON expression_opt SEMICOLON expression_opt RPAREN block_statement"
-    initialization = p[3] if p[3] else ""
-    condition = p[5] if p[5] else "True"
-    increment = p[7] if p[7] else ""
-    loop_body = p[9]
+    "for_statement : FOR LPAREN NUMBER FORRANGE NUMBER RPAREN block_statement"
+    starting_index = p[3]
+    finish_index = p[5]
+    loop_body = p[7]
 
     loop_code = ""
-    if initialization:
-        loop_code += f"{initialization}\n"
-    loop_code += f"while ({condition}):\n"
+    loop_code += f"for range({starting_index},{finish_index}):\n"
     loop_body_indented = indent(loop_body)
-    if increment:
-        loop_body_indented += f"    {increment}\n"
     loop_code += loop_body_indented
     p[0] = loop_code
 
@@ -224,7 +221,10 @@ def p_expression_factor(p):
 
 def p_factor_boolean(p: list[str]):
     "factor : BOOLEAN"
-    p[0] = p[1].capitalize()
+    if p[1] == "migue":
+        p[0] = "False"
+    else:
+        p[0] = "True"
 
 
 def p_factor_number(p):

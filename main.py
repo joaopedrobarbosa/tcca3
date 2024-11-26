@@ -1,7 +1,6 @@
 from parser import parser
 import argparse
 from fastapi import FastAPI, Request
-from parser import parser
 from error_translator import ErrorTranslator
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
@@ -22,6 +21,7 @@ async def read_item(request: Request):
         request=request, name="code-input.html", context={}
     )
 
+
 @app.post("/", response_class=HTMLResponse)
 async def compile(request: Request):
     code = await request.form()
@@ -29,19 +29,27 @@ async def compile(request: Request):
     try:
         output = parser.parse(code)
         if not output:
-            raise Exception('Invalid Syntax')
+            raise Exception("Invalid Syntax")
         return templates.TemplateResponse(
-        request=request, name="code-input.html", context={"codeOutput": output, "previousCode": code}
-    )
+            request=request,
+            name="code-input.html",
+            context={"codeOutput": output, "previousCode": code},
+        )
     except Exception as e:
-        print('error', e)
+        print("error", e)
         error = ErrorTranslator(e).read_error()
         return templates.TemplateResponse(
-            request=request, name="code-input.html", context={"codeOutput": error}
+            request=request,
+            name="code-input.html",
+            context={
+                "codeOutput": error,
+                "previousCode": code,
+            },
         )
 
+
 if __name__ == "__main__":
-    arg_parser =  argparse.ArgumentParser(prog="bahia_lang")
+    arg_parser = argparse.ArgumentParser(prog="bahia_lang")
     arg_parser.add_argument("filename")
     args = arg_parser.parse_args()
 
