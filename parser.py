@@ -37,7 +37,8 @@ tokens = [
 ] + list(set(reserved.values()))
 
 # Ignored characters
-t_ignore = " \t"
+t_ignore = " \t\r"
+
 
 # Token matching rules
 t_PLUS = r"\+"
