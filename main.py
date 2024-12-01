@@ -1,4 +1,5 @@
 from parser import parser
+import subprocess
 import argparse
 from fastapi import FastAPI, Request
 from error_translator import ErrorTranslator
@@ -56,7 +57,12 @@ if __name__ == "__main__":
     with open(args.filename) as program:
         lines = program.readlines()
         output = parser.parse("\n".join(lines))
-        print(output)
 
-    with open("./output.py", "w") as py_output:
-        py_output.write(output)
+    print("Python output:")
+    print(output)
+
+    with open("./output.py", "w") as python_output:
+        python_output.write(output)
+
+    print("Stdout:")
+    subprocess.run(["python", "output.py"])

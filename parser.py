@@ -139,7 +139,7 @@ def p_for_statement(p):
     loop_body = p[7]
 
     loop_code = ""
-    loop_code += f"for range({starting_index},{finish_index}):\n"
+    loop_code += f"for _ in range({starting_index},{finish_index}):\n"
     loop_body_indented = indent(loop_body)
     loop_code += loop_body_indented
     p[0] = loop_code
