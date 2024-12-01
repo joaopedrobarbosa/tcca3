@@ -56,6 +56,12 @@ vai_de i (0 ate 10) {
 se (eh_mermo) {
     amostre(False);
 }
+
+z = 5;
+enquanto (z < 10) {
+  amostre("RAPHAWELL");
+  z = z + 1;
+}
 ```
 
 Palavras chave da linguagem:
