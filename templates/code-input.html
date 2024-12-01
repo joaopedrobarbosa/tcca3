@@ -9,13 +9,21 @@
     <div class="code-container">
       <form action="/" method="post">
         <label for="code-input">Compilador de Baiano:</label>
-        <textarea id="code-input" name="codeInput">{{previousCode}}</textarea>
+        <textarea id="code-input" name="codeInput">{{previous_code}}</textarea>
         <button type="submit">Submit</button>
       </form>
       <div>
         <label>Receba:</label>
         <div style="font-size: 20px">
-          <pre>{{ codeOutput | safe }}</pre>
+          <pre>{{ code_output | safe }}</pre>
+        </div>
+      </div>
+      <div class="std-out">
+        <h3>Saída:</h3>
+        <div>
+          {%for line in std_out%}
+          <p>{{line}}</p>
+          {%endfor%}
         </div>
       </div>
     </div>

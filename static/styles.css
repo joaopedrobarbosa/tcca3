@@ -65,3 +65,7 @@ button {
   border-radius: 5px;
   box-sizing: border-box;
 }
+
+.std-out {
+  margin: 20px 0;
+}
