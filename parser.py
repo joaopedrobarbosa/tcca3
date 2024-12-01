@@ -133,13 +133,14 @@ def p_statement(p):
 
 
 def p_for_statement(p):
-    "for_statement : FOR LPAREN NUMBER FORRANGE NUMBER RPAREN block_statement"
-    starting_index = p[3]
-    finish_index = p[5]
-    loop_body = p[7]
+    "for_statement : FOR NAME LPAREN NUMBER FORRANGE NUMBER RPAREN block_statement"
+    loop_variable = p[2]
+    starting_index = p[4]
+    finish_index = p[6]
+    loop_body = p[8]
 
     loop_code = ""
-    loop_code += f"for range({starting_index},{finish_index}):\n"
+    loop_code += f"for {loop_variable} in range({starting_index},{finish_index}):\n"
     loop_body_indented = indent(loop_body)
     loop_code += loop_body_indented
     p[0] = loop_code
