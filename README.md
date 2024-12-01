@@ -4,23 +4,19 @@ Repositório destinado para atividade A3 da UC teoria da computação e compilad
 
 ### Rodando o projeto
 
-Crie um novo ambiente virtual:
+Para criar um ambiente virtual e instalar as dependências:
 
 ```bash
-python -m venv .venv && source ./.venv/bin/activate
+./setup.sh
 ```
 
-Instale as dependências:
-
-```bash
-pip install -r requirements.txt
-```
+````
 
 #### Para compilar e executar um arquivo .bahia
 
 ```bash
 python main.py ./caminho/para/arquivo.bahia
-```
+````
 
 O arquivo será compilado e executado.
 O resultado será exibido no terminal.
