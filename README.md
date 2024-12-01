@@ -42,7 +42,6 @@ As palavras chave da linguagem são derivadas da cultura baiana, refletindo a ex
 Um exemplo de código em Bahia:
 
 ```bahia
-
 x = 0;
 y = 2 * 3 + 4 * (5 - x);
 
