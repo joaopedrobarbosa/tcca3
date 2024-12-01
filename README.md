@@ -22,7 +22,8 @@ pip install -r requirements.txt
 python main.py ./caminho/para/arquivo.bahia
 ```
 
-O arquivo será compilado e executado, e o resultado será exibido no terminal.
+O arquivo será compilado e executado.
+O resultado será exibido no terminal.
 A saída estará disponível em `./output.py`
 
 #### Para rodar o servidor interativo (interface de usuário)
@@ -30,3 +31,45 @@ A saída estará disponível em `./output.py`
 ```bash
 uvicorn main:app
 ```
+
+Acesse a aplicação em `http://localhost:8000`
+
+### Sobre o projeto
+
+Implementada com a ajuda da biblioteca Ply, a linguagem Bahia é uma linguagem de programação de alto nível expressiva e de fácil compreensão.
+As palavras chave da linguagem são derivadas da cultura baiana, refletindo a expressividade do povo baiano.
+
+Um exemplo de código em Bahia:
+
+```bahia
+
+x = 0;
+y = 2 * 3 + 4 * (5 - x);
+
+se (x > 5) {
+    amostre("x is greater than 5");
+} senao {
+    amostre("x is less than or equal to 5");
+}
+
+vai_de i (0 ate 10) {
+    amostre(i);
+    amostre("MANOWELL");
+    se (x == i) {
+        amostre("x == i");
+    }
+}
+
+se (eh_mermo) {
+    amostre(False);
+}
+```
+
+Palavras chave da linguagem:
+se (if)
+senao (else)
+vai_de (for)
+eh_mermo (True)
+migue (False)
+amostre (print)
+enquanto (while)
