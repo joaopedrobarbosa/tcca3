@@ -1,4 +1,5 @@
 from parser import parser
+import os
 import subprocess
 import argparse
 from fastapi import FastAPI, Request
@@ -31,10 +32,24 @@ async def compile(request: Request):
         output = parser.parse(code)
         if not output:
             raise Exception("Invalid Syntax")
+
+        with open("./interface_output.py", "w") as python_output:
+            python_output.write(output)
+
+        result = subprocess.run(
+            ["python", "interface_output.py"], capture_output=True, text=True
+        )
+        os.remove("interface_output.py")
+        std_out_lines = [str(line) for line in result.stdout.splitlines()]
+
         return templates.TemplateResponse(
             request=request,
             name="code-input.html",
-            context={"codeOutput": output, "previousCode": code},
+            context={
+                "code_output": output,
+                "previous_code": code,
+                "std_out": std_out_lines,
+            },
         )
     except Exception as e:
         print("error", e)
@@ -43,8 +58,8 @@ async def compile(request: Request):
             request=request,
             name="code-input.html",
             context={
-                "codeOutput": error,
-                "previousCode": code,
+                "code_output": error,
+                "previous_code": code,
             },
         )
 

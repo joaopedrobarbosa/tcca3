@@ -157,19 +157,6 @@ def p_assignment(p):
     p[0] = f"{p[1]} = {p[3]}"
 
 
-def p_expression_opt(p):
-    """
-    expression_opt : expression
-                   | empty
-    """
-    p[0] = p[1]
-
-
-def p_empty(p):
-    "empty :"
-    p[0] = ""
-
-
 def p_if_statement(p):
     """
     if_statement : IF LPAREN expression RPAREN block_statement
