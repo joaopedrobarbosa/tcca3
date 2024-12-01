@@ -134,9 +134,6 @@ def p_statement(p):
 
 def p_for_statement(p):
     "for_statement : FOR NAME LPAREN NUMBER FORRANGE NUMBER RPAREN block_statement"
-    for i in range(len(p)):
-        print(f"p[{i}] = {p[i]}")
-
     loop_variable = p[2]
     starting_index = p[4]
     finish_index = p[6]
