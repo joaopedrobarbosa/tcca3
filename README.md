@@ -10,13 +10,11 @@ Para criar um ambiente virtual e instalar as dependências:
 ./setup.sh
 ```
 
-````
-
 #### Para compilar e executar um arquivo .bahia
 
 ```bash
 python main.py ./caminho/para/arquivo.bahia
-````
+```
 
 O arquivo será compilado e executado.
 O resultado será exibido no terminal.
