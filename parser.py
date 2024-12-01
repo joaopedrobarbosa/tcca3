@@ -101,14 +101,6 @@ precedence = (
     ("left", "TIMES", "DIVIDE"),
 )
 
-# Define the start symbol
-start = "program"
-
-
-def p_program(p):
-    "program : statements"
-    p[0] = p[1]
-
 
 def p_statements_multiple(p):
     "statements : statements statement"
@@ -139,8 +131,7 @@ def p_for_statement(p):
     finish_index = p[6]
     loop_body = p[8]
 
-    loop_code = ""
-    loop_code += f"for {loop_variable} in range({starting_index},{finish_index}):\n"
+    loop_code = f"for {loop_variable} in range({starting_index},{finish_index}):\n"
     loop_body_indented = indent(loop_body)
     loop_code += loop_body_indented
     p[0] = loop_code
