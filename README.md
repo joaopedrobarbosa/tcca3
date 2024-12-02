@@ -54,7 +54,7 @@ vai_de i (0 ate 10) {
 }
 
 se (eh_mermo) {
-    amostre(False);
+    amostre(migue);
 }
 
 z = 5;
