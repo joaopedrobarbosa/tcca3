@@ -2,6 +2,13 @@
 
 Repositório destinado para atividade A3 da UC teoria da computação e compiladores
 
+# Participantes
+Joao Pedro Barbosa Santos - RA: 1272121747
+Raphael de Freitas Oliveira - RA: 1272211685
+Manoel Cendon Duran - RA: 1272214667
+Tereza Muniz Ferreira - RA: 1272122249
+Renan Santos Abreu de Barros  - RA: 1272121819
+
 ### Rodando o projeto
 
 Para criar um ambiente virtual e instalar as dependências:
